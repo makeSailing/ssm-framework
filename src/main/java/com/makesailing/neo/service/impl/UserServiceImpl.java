@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 /**
  * #
  *
- * @author <a href="mailto:jamie.li@wolaidai.com">jamie.li</a>
+ * @author jamie
  * @date 2018/9/21 15:47
  */
 @Service(UserService.SERVICE_ID)

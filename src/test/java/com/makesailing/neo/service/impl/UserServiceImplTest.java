@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 /** 
 * UserServiceImpl Tester. 
 * 
-* @author <a href="mailto:jamie.li@wolaidai.com">jamie.li</a> 
+* @author jamie
 * @since <pre>09/21/2018</pre> 
 */
 // 加载spring配置文件

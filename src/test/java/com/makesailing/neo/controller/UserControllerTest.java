@@ -18,7 +18,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 /** 
 * UserController Tester. 
 * 
-* @author <a href="mailto:jamie.li@wolaidai.com">jamie.li</a> 
+* @author jamie
 * @since <pre>09/21/2018</pre> 
 */
 @RunWith(SpringJUnit4ClassRunner.class)  //此处调用Spring单元测试类
