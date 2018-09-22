@@ -1,6 +1,7 @@
 package com.makesailing.neo.mappers;
 
 import com.makesailing.neo.domain.User;
+import java.util.List;
 
 public interface UserMapper {
     /**
@@ -50,4 +51,7 @@ public interface UserMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(User record);
+
+    List<User> getUserList();
+
 }
