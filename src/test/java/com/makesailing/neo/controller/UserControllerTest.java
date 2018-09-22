@@ -1,6 +1,9 @@
 package com.makesailing.neo.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -16,7 +19,6 @@ import org.junit.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 /**
@@ -52,7 +54,7 @@ public class UserControllerTest extends BaseControllerTest {
   @Test
   public void testGetUserDetailById() throws Exception {
     RequestBuilder request = null;
-    request = MockMvcRequestBuilders.get(Urls.User.USER_DETAIL, 1);
+    request = get(Urls.User.USER_DETAIL, 1);
     String responseString = mockMvc.perform(request)
         .andExpect(status().isOk()) // 返回的状态是200
         .andDo(print()) // 打印出请求和相应的内容
@@ -67,7 +69,10 @@ public class UserControllerTest extends BaseControllerTest {
    */
   @Test
   public void testGetUserList() throws Exception {
-    //TODO: Test goes here...
+    String response = mockMvc.perform(get(Urls.User.USER_LIST)).andExpect(status().isOk())
+        .andDo(print()).andReturn().getResponse().getContentAsString();
+    Assert.assertNotNull(response);
+    System.out.println(response);
   }
 
 
@@ -101,7 +106,15 @@ public class UserControllerTest extends BaseControllerTest {
    */
   @Test
   public void testUpdateUser() throws Exception {
-    //TODO: Test goes here...
+    User user = new User();
+    user.setId(2L);
+    user.setUsername("tom");
+
+    String respone = mockMvc.perform(
+        put(Urls.User.UPDATE_USER).contentType(MediaType.APPLICATION_JSON_UTF8).content(JSON.toJSONString(user)))
+        .andDo(print()).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+    Assert.assertNotNull(respone);
+    System.out.println(respone);
   }
 
   /**
@@ -109,7 +122,10 @@ public class UserControllerTest extends BaseControllerTest {
    */
   @Test
   public void testDeleteUserById() throws Exception {
-    //TODO: Test goes here...
+    String response = mockMvc.perform(delete(Urls.User.DELETE_USER, 4L)).andExpect(status().isOk())
+        .andDo(print()).andReturn().getResponse().getContentAsString();
+    Assert.assertNotNull(response);
+    System.out.println(response);
   }
 
 

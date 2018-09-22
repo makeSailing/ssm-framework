@@ -24,7 +24,7 @@ public interface Urls {
     /**
      * 修改用户
      */
-    String UPDATE_USER = ROOT + "/update/{id}" + USER;
+    String UPDATE_USER = ROOT + "/update" + USER;
     /**
      * 删除用户
      */
