@@ -12,14 +12,12 @@ import com.makesailing.neo.BaseControllerTest;
 import com.makesailing.neo.constant.Urls;
 import com.makesailing.neo.domain.User;
 import java.util.Date;
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * UserController Tester.
@@ -27,26 +25,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
  * @author jamie
  * @since <pre>09/21/2018</pre>
  */
+@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
+@Transactional
 public class UserControllerTest extends BaseControllerTest {
-
-  /**
-   * 模拟mvc测试对象
-   */
-  private MockMvc mockMvc;
-
-
-  /**
-   * 所有测试方法执行之前执行该方法
-   */
-  @Before
-  public void before() {
-    //获取mockmvc对象实例
-    mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-  }
-
-  @After
-  public void tearDown() throws Exception {
-  }
 
   /**
    * Method: getUserDetailById(@PathVariable(name = "id") Long id)
@@ -82,7 +63,7 @@ public class UserControllerTest extends BaseControllerTest {
   @Test
   public void testSaveUser() throws Exception {
     User user = new User();
-    user.setEmail("1234567@qq.com");
+    user.setEmail("12345678@qq.com");
     user.setUsername("jack");
     user.setPassword("123456");
     user.setRole("root");
